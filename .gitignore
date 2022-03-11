@@ -127,10 +127,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-greenery/seeds/.gitkeep
-greenery/snapshots/.gitkeep
-greenery/tests/.gitkeep
-greenery/.gitignore
-greenery/macros/.gitkeep
-greenery/analyses/.gitkeep
-.gitignore
