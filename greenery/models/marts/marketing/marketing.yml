@@ -11,7 +11,7 @@ models:
       - name: order_id 
         tests:
           - not_null
-      - name: order_created_at
+      - name: order_created_date
         tests:
           - not_null
       - name: order_total
