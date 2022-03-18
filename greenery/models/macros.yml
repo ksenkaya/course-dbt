@@ -1,0 +1,5 @@
+version: 2
+
+macros:
+  - name: positive_values
+    description: A macro to check if values are positive.

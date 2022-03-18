@@ -1,0 +1,34 @@
+version: 2
+
+models:
+
+  - name: fct_user_sessions
+    description: Contains sessions at user level
+    columns:
+      - name: session_id
+        tests:
+          - not_null
+      - name: user_id 
+        tests:
+          - not_null
+      - name: full_name 
+        tests:
+          - not_null
+      - name: email 
+        tests:
+          - not_null
+      - name: add_to_cart
+        tests:
+          - positive_values
+      - name: checkout
+        tests:
+          - positive_values
+      - name: page_view
+        tests:
+          - positive_values
+      - name: package_shipped
+        tests:
+          - positive_values
+      - name: session_length_mins
+        tests:
+          - positive_values
