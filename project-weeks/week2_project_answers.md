@@ -51,7 +51,7 @@ In product, I built `int_session_events_aggregated` as an intermediate model to 
 
 
 #### 4 - Use the dbt docs to visualize your model DAGs to ensure the model layers make sense.
-![dbt-dag](/Users/kadirsenkaya/Desktop/dbt-course-ss/dbt-dag.png "dbt-dag")
+![dbt-dag](https://github.com/ksenkaya/course-dbt/blob/dbt_dev/project-weeks/dbt-dag.png "dbt-dag")
 
 ### Part 2 Tests
 
