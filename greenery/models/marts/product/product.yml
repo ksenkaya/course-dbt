@@ -17,18 +17,56 @@ models:
       - name: email 
         tests:
           - not_null
-      - name: add_to_cart
+      - name: add_to_cart_events
         tests:
           - positive_values
-      - name: checkout
+      - name: checkout_events
         tests:
           - positive_values
-      - name: page_view
+      - name: page_view_events
         tests:
-          - positive_values
-      - name: package_shipped
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: package_shipped_events
         tests:
           - positive_values
       - name: session_length_mins
         tests:
-          - positive_values
+          - dbt_utils.accepted_range:
+              min_value: 0
+             
+
+  - name: fct_sessions
+    description: Contains sessions per product
+    columns:
+      - name: session_id
+        tests:
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_users')
+              field: user_id
+      - name: event_created_at
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              max_value: "now()"
+      - name: event_type
+        tests:
+          - not_null
+      - name: order_id
+        tests:
+          - relationships:
+              to: ref('fct_orders')
+              field: order_id
+      - name: product_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fct_orders')
+              field: product_id
+      - name: product_name
+        tests:
+          - not_null

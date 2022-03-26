@@ -1,9 +1,15 @@
 {{
   config(
-    materialized='ephemeral'
+    materialized='table'
   )
 }}
 
+-- set event_types variables
+{% 
+  set event_types = dbt_utils.get_query_results_as_dict(
+    "select distinct event_type from" ~ ref('fct_events')
+  )
+%}
 
 with fct_events as (
 
@@ -17,14 +23,13 @@ select
   session_id,
   user_id,
   event_created_at::date as event_created_date,
-  sum(case when event_type = 'add_to_cart' then 1 else 0 end) as add_to_cart,
-  sum(case when event_type = 'checkout' then 1 else 0 end) as checkout,
-  sum(case when event_type = 'page_view' then 1 else 0 end) as page_view,
-  sum(case when event_type = 'package_shipped' then 1 else 0 end) as package_shipped
-
+  {% for event_type in event_types['event_type'] %}
+  sum(case when event_type = '{{event_type}}' then 1 else 0 end) as {{event_type}}_events,
+  {% endfor %}
+  sum(1) as total_events  
 from fct_events
 
-group by 1,2,3
+{{dbt_utils.group_by(3) }}
 
 )
 

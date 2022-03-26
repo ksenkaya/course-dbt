@@ -1,3 +1,10 @@
+{{ config(
+    indexes=[
+      {'columns': ['event_id'], 'type': 'hash'},
+      {'columns': ['event_type', 'session_id']},
+    ]
+)}}
+
 with sourced as (
 
     select * from {{ source('src_postgres', 'events') }}

@@ -24,3 +24,9 @@ models:
       +materialized: view
     marts:
       +materialized: table
+
+  post-hook: # will be applied to all models
+   - "grant select on {{ this }} to reporting"
+
+on-run-end: # will be applied at the end of a run
+  - "grant usage on schema {{ target.schema }} to group reporting"

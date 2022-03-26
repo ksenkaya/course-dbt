@@ -28,4 +28,5 @@ left join {{ ref('dim_users') }} u
 
 )
 
+
 select * from final
