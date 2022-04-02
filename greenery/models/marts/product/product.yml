@@ -70,3 +70,16 @@ models:
       - name: product_name
         tests:
           - not_null
+
+  - name: fct_product_funnel
+    description: Shows top-level product funnel
+    columns:
+        - name: step
+          tests:
+            - not_null
+            - unique
+        - name: step_count
+          tests:
+            - not_null
+            - positive_values
+        - name: drop_off_rate
